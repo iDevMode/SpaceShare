@@ -3,9 +3,10 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { cn } from '@/lib/utils'
-import { Building2, Calendar, Heart, Search, Settings, User } from 'lucide-react'
+import { Building2, Calendar, Heart, LogIn, Search, Settings, User } from 'lucide-react'
 
 const mainNavItems = [
   {
@@ -40,7 +41,8 @@ const mainNavItems = [
   {
     title: 'Settings',
     href: '/dashboard/user/settings',
-    icon: Settings
+    icon: Settings,
+    requireAuth: true
   }
 ]
 
@@ -50,8 +52,10 @@ interface MainNavProps {
 
 export function MainNav({ userRole }: MainNavProps) {
   const pathname = usePathname()
+  const { data: session } = useSession()
 
   const filteredNavItems = mainNavItems.filter(item => {
+    if (item.requireAuth && !session) return false
     if (!item.role) return true
     return item.role === userRole
   })
@@ -84,10 +88,14 @@ export function MainNav({ userRole }: MainNavProps) {
 
           <NavigationMenu.Item>
             <Link
-              href="/dashboard/user"
+              href={session ? '/dashboard/user' : '/login'}
               className="flex items-center space-x-1 rounded-md p-2 hover:bg-slate-100"
             >
-              <User className="h-5 w-5" />
+              {session ? (
+                <User className="h-5 w-5" />
+              ) : (
+                <LogIn className="h-5 w-5" />
+              )}
             </Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>
