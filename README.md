@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpaceShare - On-Demand Co-Working Space Platform
+
+SpaceShare is a modern web application that connects workspace owners with professionals seeking flexible office spaces. Similar to Airbnb but specifically designed for co-working spaces, it allows users to find and book professional workspaces by the hour, day, week, or month.
+
+## Features
+
+### For Users
+- 🔍 Advanced Search: Find spaces by location, date, and time
+- 🗺️ Interactive Map: View available spaces in your desired area
+- ⭐ Favorites: Save spaces you're interested in for later
+- 📅 Flexible Booking: Book spaces by hour, day, week, or month
+- 💳 Secure Payments: Safe and easy transaction processing
+- 📱 Responsive Design: Perfect experience on any device
+
+### For Hosts
+- 📍 Space Listing: Advertise your workspace with detailed information
+- 📸 Photo Management: Showcase your space with high-quality images
+- 📊 Dashboard: Manage bookings and view analytics
+- 💰 Revenue Management: Track earnings and manage pricing
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Authentication**: NextAuth.js
+- **Database**: Prisma with SQLite
+- **Styling**: Tailwind CSS
+- **UI Components**: 
+  - Shadcn UI
+  - Radix UI Primitives
+- **State Management**: Zustand
+- **Icons**: Lucide Icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18.17 or later
+- npm or yarn package manager
 
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/iDevMode/SpaceShare.git
+cd SpaceShare
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env` file in the root directory with the following variables:
+```env
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Initialize the database:
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-## Learn More
+5. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                 # App router pages and layouts
+│   ├── (auth)/         # Authentication routes
+│   ├── (dashboard)/    # Protected dashboard routes
+│   ├── api/            # API routes
+│   └── search/         # Search functionality
+├── components/         # Reusable components
+│   ├── common/         # Shared components
+│   ├── layout/         # Layout components
+│   └── map/           # Map-related components
+├── lib/               # Utilities and configurations
+│   ├── config/        # Configuration files
+│   ├── store/         # Zustand store
+│   └── utils/         # Helper functions
+└── styles/            # Global styles
+```
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Design inspired by modern co-working space platforms
+- Built with best practices in React and Next.js
+- Implements responsive and accessible design patterns
