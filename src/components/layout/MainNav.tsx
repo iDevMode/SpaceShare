@@ -6,14 +6,9 @@ import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { cn } from '@/lib/utils'
-import { Building2, Calendar, Heart, LogIn, Search, Settings, User } from 'lucide-react'
+import { Building2, Calendar, Heart, LogIn, Settings, User } from 'lucide-react'
 
 const mainNavItems = [
-  {
-    title: 'Search Spaces',
-    href: '/search',
-    icon: Search
-  },
   {
     title: 'My Bookings',
     href: '/dashboard/user/bookings',
